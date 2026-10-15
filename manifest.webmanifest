@@ -1,0 +1,32 @@
+{
+  "name": "MCQ Exam Prep",
+  "short_name": "MCQ Exam",
+  "description": "MCQ Exam Prep — MCQ practice, mock tests and flashcards",
+  "id": "/mcq-app-web/",
+  "start_url": "/mcq-app-web/",
+  "scope": "/mcq-app-web/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1565C0",
+  "theme_color": "#1565C0",
+  "icons": [
+    {
+      "src": "/mcq-app-web/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/mcq-app-web/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/mcq-app-web/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
