@@ -31,6 +31,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MCQ Exam Prep">
     <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="light dark">
     <link rel="manifest" href="/mcq-app-web/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/mcq-app-web/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/mcq-app-web/icons/icon-192.png">
@@ -55,8 +56,15 @@
         touch-action: manipulation;
         background: #1565C0;
       }
-      #root { height: 100%; }
-      input, textarea { font-size: 16px; } /* iOS Safari zooms into smaller fields */
+      #root { height: 100%; -webkit-user-select: none; user-select: none; }
+      input, textarea { font-size: 16px; -webkit-user-select: text; user-select: text; }
+      /* iOS "black-translucent" status bar always draws white text, so give the area under the
+         clock / Dynamic Island a solid brand colour. Content is already inset by SafeAreaView
+         (height is 0 on devices/browsers without a safe-area inset). */
+      body::before {
+        content: ''; position: fixed; top: 0; left: 0; right: 0; z-index: 2147483647;
+        height: env(safe-area-inset-top, 0px); background: #1565C0; pointer-events: none;
+      }
     </style>
   </head>
 
@@ -67,10 +75,18 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/mcq-app-web/_expo/static/js/web/entry-69bc7aafe6ae14075835e6d860250d43.js" defer></script>
+  <script src="/mcq-app-web/_expo/static/js/web/entry-0442d6be758f147a49544c64d00f9fcc.js" defer></script>
 
     <script>
       if ('serviceWorker' in navigator) {
+        // A new version takes over → reload once so the open app is never stuck on old code
+        var hadController = !!navigator.serviceWorker.controller;
+        var reloaded = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function () {
+          if (!hadController || reloaded) { hadController = true; return; }
+          reloaded = true;
+          window.location.reload();
+        });
         window.addEventListener('load', function () {
           navigator.serviceWorker.register("/mcq-app-web/sw.js", { scope: "/mcq-app-web/" })
             .catch(function (e) { console.warn('SW registration failed', e); });
