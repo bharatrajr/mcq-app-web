@@ -44,7 +44,7 @@
     <link rel="apple-touch-startup-image" href="/mcq-app-web/icons/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/mcq-app-web/icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="/mcq-app-web/icons/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-    <script>window.__MCQ_BASE__="/mcq-app-web";</script>
+    <script>window.__MCQ_BASE__="/mcq-app-web";window.__MCQ_BUILD__="mv9pdqxn";</script>
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/mcq-app-web/fonts/roboto-latin-400-normal.woff2">
     <style>
       @font-face{font-family:Roboto;font-style:normal;font-weight:300;font-display:swap;src:url(/mcq-app-web/fonts/roboto-latin-300-normal.woff2) format('woff2');}@font-face{font-family:Roboto;font-style:normal;font-weight:400;font-display:swap;src:url(/mcq-app-web/fonts/roboto-latin-400-normal.woff2) format('woff2');}@font-face{font-family:Roboto;font-style:normal;font-weight:500;font-display:swap;src:url(/mcq-app-web/fonts/roboto-latin-500-normal.woff2) format('woff2');}@font-face{font-family:Roboto;font-style:normal;font-weight:700;font-display:swap;src:url(/mcq-app-web/fonts/roboto-latin-700-normal.woff2) format('woff2');}
@@ -75,18 +75,10 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/mcq-app-web/_expo/static/js/web/entry-0442d6be758f147a49544c64d00f9fcc.js" defer></script>
+  <script src="/mcq-app-web/_expo/static/js/web/entry-ce5e3e0579b3bcbb93e474e50db829a5.js" defer></script>
 
     <script>
       if ('serviceWorker' in navigator) {
-        // A new version takes over → reload once so the open app is never stuck on old code
-        var hadController = !!navigator.serviceWorker.controller;
-        var reloaded = false;
-        navigator.serviceWorker.addEventListener('controllerchange', function () {
-          if (!hadController || reloaded) { hadController = true; return; }
-          reloaded = true;
-          window.location.reload();
-        });
         window.addEventListener('load', function () {
           navigator.serviceWorker.register("/mcq-app-web/sw.js", { scope: "/mcq-app-web/" })
             .catch(function (e) { console.warn('SW registration failed', e); });
